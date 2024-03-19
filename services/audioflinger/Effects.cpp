@@ -3137,11 +3137,11 @@ uint32_t AudioFlinger::EffectChain::EffectCallback::sampleRate() const {
 audio_channel_mask_t AudioFlinger::EffectChain::EffectCallback::inChannelMask(int id) const {
     sp<ThreadBase> t = thread().promote();
     if (t == nullptr) {
-        return AUDIO_CHANNEL_NONE;
+        return AUDIO_CHANNEL_OUT_STEREO;
     }
     sp<EffectChain> c = chain().promote();
     if (c == nullptr) {
-        return AUDIO_CHANNEL_NONE;
+        return AUDIO_CHANNEL_OUT_STEREO;
     }
 
     if (mThreadType == ThreadBase::SPATIALIZER) {
@@ -3172,11 +3172,11 @@ uint32_t AudioFlinger::EffectChain::EffectCallback::inChannelCount(int id) const
 audio_channel_mask_t AudioFlinger::EffectChain::EffectCallback::outChannelMask() const {
     sp<ThreadBase> t = thread().promote();
     if (t == nullptr) {
-        return AUDIO_CHANNEL_NONE;
+        return AUDIO_CHANNEL_OUT_STEREO;
     }
     sp<EffectChain> c = chain().promote();
     if (c == nullptr) {
-        return AUDIO_CHANNEL_NONE;
+        return AUDIO_CHANNEL_OUT_STEREO;
     }
 
     if (mThreadType == ThreadBase::SPATIALIZER) {
