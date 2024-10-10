@@ -3220,6 +3220,11 @@ status_t AudioPolicyManager::setVolumeIndexForAttributes(const audio_attributes_
         return BAD_VALUE;
     }
     ALOGV("%s: group %d matching with %s", __FUNCTION__, group, toString(attributes).c_str());
+    if (mEngine->getStreamTypeForAttributes(attributes) == AUDIO_STREAM_PATCH) {
+        ALOGV("%s: cannot change volume for PATCH stream, attrs: %s",
+                __FUNCTION__, toString(attributes).c_str());
+        return NO_ERROR;
+    }
     status_t status = NO_ERROR;
     IVolumeCurves &curves = getVolumeCurves(attributes);
     VolumeSource vs = toVolumeSource(group);
