@@ -7586,7 +7586,7 @@ void AudioFlinger::DuplicatingThread::removeOutputTrack(MixerThread *thread)
 // caller must hold mLock
 void AudioFlinger::DuplicatingThread::updateWaitTime_l()
 {
-    mWaitTimeMs = UINT_MAX;
+    mWaitTimeMs = mNormalFrameCount * 2 * 1000 / mSampleRate;
     for (size_t i = 0; i < mOutputTracks.size(); i++) {
         sp<ThreadBase> strong = mOutputTracks[i]->thread().promote();
         if (strong != 0) {
